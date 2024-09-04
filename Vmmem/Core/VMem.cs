@@ -1,8 +1,12 @@
 ﻿
+using System.Runtime.InteropServices;
 using Vmmem;
 using Vmmem.Logger;
 using Vmmsharp;
 
+/// <summary>
+/// https://github.com/ufrisk/MemProcFS/blob/master/vmmsharp/example/VmmsharpExample.cs
+/// </summary>
 public class VMem
 {
  
@@ -42,6 +46,10 @@ public class VMem
         this._sigs = new Dictionary<string, ulong>(); 
     }
 
+    
+    /// <summary>
+    /// 메모리 맵을 생성합니다.
+    /// </summary>
     private void TryMemoryMapGen()
     {
         using (ProfileingContext ctx = new ProfileingContext("MemoryMapGen"))
@@ -66,15 +74,33 @@ public class VMem
     /// <returns></returns>
     public T? Read<T>(ulong address)  where T : unmanaged
     {
-        this.Readed++;
-        
-        T? result = _vmm.MemReadAs<T>(_gameProcessVaBase + address, Vmm.FLAG_NOCACHE);
+        ++this.Readed;
+        T? result = VmmGameProcess.MemReadAs<T>(_gameProcessVaBase + address, Vmm.FLAG_NOCACHE);
         return result;
     }
-
+    
+    
+    public T[]? ReadArray<T>(ulong address, uint count) where T : unmanaged
+    {
+        ++this.Readed;
+        return this.VmmGameProcess.MemReadArray<T>(_gameProcessVaBase + address, count);
+  
+    }
+    
+    private T?[] ReadArray<T> (ulong adress, int count) where T : unmanaged
+    {
+        T?[] result = new T?[count];
+        for (int i = 0; i < count; i++)
+        {
+            result[i] = Read<T>(adress + (ulong) i * (ulong) Marshal.SizeOf<T>());
+        }
+        return result;
+    }
+    
+    
     public void Init(VMemConfig config)
     { 
-        
+ 
         
     }
     
