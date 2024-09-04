@@ -1,6 +1,6 @@
-namespace DefaultNamespace;
-
-public interface ICamera
-{
-       CVector3 Position { get; set; } 
-}
+// namespace DefaultNamespace;
+//
+// public interface ICamera
+// {
+//        CVector3 Position { get; set; } 
+// }

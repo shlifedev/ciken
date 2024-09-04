@@ -1,13 +1,22 @@
-using System.Numerics;
+using OpenTK.Mathematics;
+using OpenTK.Windowing.Desktop;
+using Simple3DRendering;
 
-namespace Vmmem;
-
-public class Program
+public class Program2
 {
-    static void Main(String[] args)
+    [STAThread]
+    public static void Main()
     {
-        VMem mem = new VMem(true); 
-        
-        Matrix4x4
+        var gameWindowSettings = GameWindowSettings.Default;
+        var nativeWindowSettings = new NativeWindowSettings()
+        {
+            Size = new Vector2i(800, 600),
+            Title = "Simple 3D Rendering"
+        };
+
+        using (var program = new Renderer(gameWindowSettings, nativeWindowSettings))
+        {
+            program.Run();
+        }
     }
-} 
+}

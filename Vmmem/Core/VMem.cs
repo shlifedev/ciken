@@ -86,19 +86,19 @@ public class VMem
         return this.VmmGameProcess.MemReadArray<T>(_gameProcessVaBase + address, count);
     }
     
-    
-     
-    public VMemResult Init(VMemConfig config)
-    {
-        try
-        {
-        }
-        catch
-        {
-            return VMemResult.VM_INIT_FAILED;
-        }
-
-    }
-    
+    //
+    //  
+    // public VMemResult Init(VMemConfig config)
+    // {
+    //     try
+    //     {
+    //     }
+    //     catch
+    //     {
+    //         return VMemResult.VM_INIT_FAILED;
+    //     }
+    //
+    // }
+    //
 }
  

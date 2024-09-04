@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Vmmsharp.SDK.Unreal
+namespace Vmmsharp.SDK.Unreal;
 [StructLayout(LayoutKind.Explicit)]
 public unsafe struct UnrealWorld 
 {
