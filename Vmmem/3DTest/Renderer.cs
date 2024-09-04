@@ -24,8 +24,8 @@ namespace Simple3DRendering
         {
             base.OnLoad();
 
-            _shader = new Shader("/Users/shlifedev/vmemory/Vmmem/shader.vert",
-                "/Users/shlifedev/vmemory/Vmmem/shader.frag");
+            _shader = new Shader("/Users/shlifedev/vmemory/Vmmem/3DTest/shader.vert",
+                "/Users/shlifedev/vmemory/Vmmem/3DTest/shader.frag");
             _shader.Use();
 
             _cube = new Cube(_shader);
