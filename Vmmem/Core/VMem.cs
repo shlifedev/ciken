@@ -84,24 +84,20 @@ public class VMem
     {
         ++this.Readed;
         return this.VmmGameProcess.MemReadArray<T>(_gameProcessVaBase + address, count);
-  
     }
     
-    private T?[] ReadArray<T> (ulong adress, int count) where T : unmanaged
+    
+     
+    public VMemResult Init(VMemConfig config)
     {
-        T?[] result = new T?[count];
-        for (int i = 0; i < count; i++)
+        try
         {
-            result[i] = Read<T>(adress + (ulong) i * (ulong) Marshal.SizeOf<T>());
         }
-        return result;
-    }
-    
-    
-    public void Init(VMemConfig config)
-    { 
- 
-        
+        catch
+        {
+            return VMemResult.VM_INIT_FAILED;
+        }
+
     }
     
 }
